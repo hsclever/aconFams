@@ -67,6 +67,12 @@
 			<artifactId>mybatis-spring-boot-starter</artifactId>
 			<version>1.3.0</version>
 		</dependency>
+		<!-- 내장된 tomcat에 jsp를 처리하는 서블릿이 없음 추가해줘야함.. -->
+		<dependency> 
+			<groupId>org.apache.tomcat.embed</groupId> 
+			<artifactId>tomcat-embed-jasper</artifactId> 
+		</dependency>
+
 	</dependencies>
 
 	<build>
