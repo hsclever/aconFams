@@ -13,8 +13,6 @@ public class MainController {
 
 	@RequestMapping("/main")
 	public String main() throws Exception {
-		System.out.println("ttttt");
-		System.out.println(memberService.getUserList()); 
 		return "main";
 	}
 }

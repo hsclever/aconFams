@@ -15,9 +15,8 @@ public class MemberService {
 	@Autowired
 	private MemberMapper memberMapper;
 	
-	public List<HashMap> getUserList() throws Exception{
-		System.out.println("test111");
-		return memberMapper.getUserList();
+	public List<HashMap> getUserList(HashMap<String, Object> map) throws Exception{
+		return memberMapper.getUserList(map);
 	}
 	
 }

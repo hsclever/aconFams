@@ -8,8 +8,8 @@
 <%@ include file="/WEB-INF/views/include/common.jsp" %>
  
 <script type="text/javascript">
-function goSubmit(){
-	$('#frm').attr('action', '/join').submit();
+function goSubmit(url){
+	$('#frm').attr('action', url).submit();
 }
 </script>
 </head>
@@ -19,8 +19,9 @@ function goSubmit(){
 		<div id="login">
 			<p>아이디 : <input type="text" id="userId" /></p>
 			<p>비밀번호: <input type="text" id="userPw" /></p>
-			<button type="button" onclick="javascript:goSubmit();">회원가입</button>
+			<button type="button" onclick="javascript:goSubmit('/login');">로그인</button>
 		</div>
+		<a href="javascript:goSubmit('/join');">아직 회원이 아니세요? 회원가입 화면으로 이동합니다.</a>
 	</div>
 </form>
 </body>

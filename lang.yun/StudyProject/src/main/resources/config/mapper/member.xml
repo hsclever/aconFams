@@ -3,7 +3,16 @@
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
   "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 <mapper namespace="com.study.project.mapper.MemberMapper">
-  <select id="getUserList" resultType="hashmap">
+  <select id="getUserList" resultType="hashmap" parameterType="hashmap">
     SELECT * FROM users
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+	    <if test="userId != null and userId != ''">
+	    	AND USER_ID = #{userId}
+	    </if>
+	    <if test="userPw != null and userPw != ''">
+	    	AND USER_PW = #{userPw}
+	    </if>
+    </trim>
   </select>
+  
 </mapper>
