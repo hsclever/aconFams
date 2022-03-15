@@ -19,4 +19,8 @@ public class MemberService {
 		return memberMapper.getUserList(map);
 	}
 	
+	public int addUserInfo(HashMap<String, Object> map) throws Exception{
+		return memberMapper.addUserInfo(map);
+	}
+	
 }

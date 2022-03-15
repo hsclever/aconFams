@@ -15,4 +15,16 @@
     </trim>
   </select>
   
+  <insert id="addUserInfo" parameterType="hashmap">
+  	INSERT INTO users
+  	(
+  		USER_ID
+  		, USER_PW
+  	)
+  	VALUES
+  	(
+  		#{userId}
+  		, #{userPw}
+  	)
+  </insert>
 </mapper>

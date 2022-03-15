@@ -9,4 +9,6 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface MemberMapper {
 	List<HashMap> getUserList(HashMap<String, Object> map) throws Exception;
+	
+	int addUserInfo(HashMap<String, Object> map) throws Exception;
 }
