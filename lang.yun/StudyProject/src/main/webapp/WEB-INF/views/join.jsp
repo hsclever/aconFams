@@ -89,7 +89,7 @@ function idCheck(){
 						<option value="naver.com"></option>
 						<option value="nate.com"></option>
 						<option value="google.com"></option>
-						<option value=".com"></option>
+						<option value="daum.net"></option>
 					</select>
 				
 				</li>
