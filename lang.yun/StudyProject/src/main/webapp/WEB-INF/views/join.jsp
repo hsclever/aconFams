@@ -9,6 +9,9 @@
 
 <script type="text/javascript">
 $(function(){
+	//이메일 도메인 세팅
+	Common.getCodeGrp($('#email2'), 'E_DOMAIN', [{CODE:"", CODE_NAME:"직접입력"}]);
+	
 	//아이디 입력값 변경시
 	$('#userId').on('change', function(){
 		//중복체크 후 입력값이 변경되면 다시 체크
@@ -81,6 +84,15 @@ function idCheck(){
 				<li>아이디: <input type="text" id="userId" placeholder="아이디를 입력해주세요." /><button type="button" id="btn_chkId" onclick="javascript:idCheck();">중복확인</button></li>
 				<li>비밀번호: <input type="password" id="userPw" placeholder="비밀번호를 입력해주세요." /></li>
 				<li>비밀번호확인: <input type="password" id="userPw_confirm" placeholder="비밀번호를 확인해주세요." /></li>
+				<li>이메일: <input type="text" id="email1" placeholder="이메일을 입력해주세요" />@
+					<select id="email2">
+						<option value="naver.com"></option>
+						<option value="nate.com"></option>
+						<option value="google.com"></option>
+						<option value=".com"></option>
+					</select>
+				
+				</li>
 			</ul>
 		</div>
 		<div>

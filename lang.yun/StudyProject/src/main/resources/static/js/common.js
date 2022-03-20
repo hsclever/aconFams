@@ -33,3 +33,27 @@ Common.ajax = function(url, params, successFn, errorFn, opt){
 		}
 	});
 }
+
+//코드 그룹
+Common.getCodeGrp = function(obj, groupId, opt){
+	$(obj).empty();
+	Common.ajax('getCodeGrp'
+	, { groupId : groupId }
+	, function(rs){
+		var option = '<option value="_code_">_code_name_</option>';
+		$.each(rs, function(){
+			var html = option.replace('_code_', this.CODE)
+								.replace('_code_name_', this.CODE_NAME);
+			$(obj).append(html);
+		});
+		
+		if(opt){
+			$.each(opt, function(){
+				var html = option.replace('_code_', this.CODE)
+									.replace('_code_name_', this.CODE_NAME);
+				$(obj).append(html);
+			});
+		}
+	});
+	
+}
