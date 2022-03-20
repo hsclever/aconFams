@@ -42,7 +42,7 @@ function doLogin(){
 	<div>
 		<div id="login">
 			<p>아이디 : <input type="text" id="userId" /></p>
-			<p>비밀번호: <input type="text" id="userPw" /></p>
+			<p>비밀번호: <input type="password" id="userPw" /></p>
 			<button type="button" onclick="javascript:doLogin();">로그인</button>
 		</div>
 		<a href="javascript:goSubmit('/join');">아직 회원이 아니세요? 회원가입 화면으로 이동합니다.</a>
