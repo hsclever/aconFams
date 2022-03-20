@@ -34,8 +34,8 @@ Common.ajax = function(url, params, successFn, errorFn, opt){
 	});
 }
 
-//코드 그룹
-Common.getCodeGrp = function(obj, groupId, opt){
+//코드 그룹 (for select)
+Common.getCodeGrp = function(obj, groupId, opt){ //opt : DB에서 가져온 코드 정보 이외 추가 등록할 내용이 있을시 
 	$(obj).empty();
 	Common.ajax('getCodeGrp'
 	, { groupId : groupId }

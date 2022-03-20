@@ -32,10 +32,22 @@ $(function(){
 			alert('비밀번호가 맞지 않습니다.'); return;
 		}
 		
+		var email = '';
+		if(!validEmail()){
+			alert('이메일 형식이 올바르지 않습니다.'); return;
+		}else{
+			if($('#email2').val() != ''){
+				email = $('#email1').val()+'@'+$('#email2').val();
+			}else{
+				email = $('#email1').val();
+			}
+		}
+		
 		var params = {
 				userId : $('#userId').val()
 				,userPw : $('#userPw').val()
 				,userPw_confirm : $('#userPw_confirm').val()
+				,email  : email
 		}
 		//가입
 		Common.ajax('/doJoin'
@@ -74,6 +86,24 @@ function idCheck(){
 		);
 	}
 }
+
+//이메일 체크 
+function validEmail(){
+	var email = '';
+	
+	if($('#email2').val() != ''){
+		email = $('#email1').val()+'@'+$('#email2').val();
+	}else{
+		email = $('#email1').val();
+	}
+	
+	var regExp = /^[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*@[0-9a-zA-Z]([-_.]?[0-9a-zA-Z])*.[a-zA-Z]{2,3}$/i;
+	if (email.match(regExp) != null) {
+	    return true;
+	}else{
+	    return false;
+	}
+}
 </script>
 </head>
 <body>
@@ -84,12 +114,8 @@ function idCheck(){
 				<li>아이디: <input type="text" id="userId" placeholder="아이디를 입력해주세요." /><button type="button" id="btn_chkId" onclick="javascript:idCheck();">중복확인</button></li>
 				<li>비밀번호: <input type="password" id="userPw" placeholder="비밀번호를 입력해주세요." /></li>
 				<li>비밀번호확인: <input type="password" id="userPw_confirm" placeholder="비밀번호를 확인해주세요." /></li>
-				<li>이메일: <input type="text" id="email1" placeholder="이메일을 입력해주세요" />@
+				<li>이메일: <input type="text" id="email1" placeholder="이메일을 입력해주세요" />
 					<select id="email2">
-						<option value="naver.com"></option>
-						<option value="nate.com"></option>
-						<option value="google.com"></option>
-						<option value="daum.net"></option>
 					</select>
 				
 				</li>

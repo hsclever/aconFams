@@ -17,11 +17,21 @@ public class MemberController {
 	@Autowired
 	private MemberService memberService;
 	
+	/**
+	 * 회원가입 페이지
+	 * @return
+	 */
 	@RequestMapping("/joinPage")
 	public String joinPage() {
 		return "join";
 	}
 	
+	/**
+	 * 아이디 중복체크
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
 	@ResponseBody
 	@RequestMapping("/idCheck")
 	public boolean idCheck(@RequestParam HashMap<String, Object> map) throws Exception {
@@ -29,10 +39,15 @@ public class MemberController {
 		return userList.size() > 0 ? true : false;
 	}
 	
+	/**
+	 * 회원가입
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
 	@ResponseBody
 	@RequestMapping("/doJoin")
 	public HashMap<String, Object> chkPwValid(@RequestParam HashMap<String, Object> map) throws Exception {
-		String userId = (String)map.get("userId");
 		String userPw = (String)map.get("userPw");
 		String userPw_confirm = (String)map.get("userPw_confirm");
 		
@@ -56,8 +71,17 @@ public class MemberController {
 		return rsMap;
 	}
 	
-	@RequestMapping("/join")
-	public String join() {
-		return "join";
+	/**
+	 * 로그인
+	 * @param map
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping("/doLogin")
+	public boolean doLogin(@RequestParam HashMap<String, Object> map) throws Exception {
+		map.put("userPw", EncSha256.encrypt(map.get("userPw").toString()));
+		List<HashMap> userList = memberService.getUserList(map);
+		return userList.size() == 1 ? true : false;
 	}
 }

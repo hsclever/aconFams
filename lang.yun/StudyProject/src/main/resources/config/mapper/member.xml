@@ -16,15 +16,17 @@
   </select>
   
   <insert id="addUserInfo" parameterType="hashmap">
-  	INSERT INTO users
+  	INSERT INTO TB_USERS
   	(
   		USER_ID
   		, USER_PW
+  		, EMAIL
   	)
   	VALUES
   	(
   		#{userId}
   		, #{userPw}
+  		, #{email}
   	)
   </insert>
 </mapper>
