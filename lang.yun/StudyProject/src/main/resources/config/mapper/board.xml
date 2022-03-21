@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.study.project.mapper.BoardMapper">
+<select id="getBoardTotalCount" resultType="int" parameterType="hashmap">
+    SELECT count(*) totalCount
+    FROM TB_BOARD
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+	    <if test="no != null and no != ''">
+	    	AND NO = #{no}
+	    </if>
+	    <if test="title != null and title != ''">
+	    	AND TITLE = #{title}
+	    </if>
+	    <if test="contents != null and contents != ''">
+	    	AND CONTENTS = #{contents}
+	    </if>
+	    <if test="rgstId != null and rgstId != ''">
+	    	AND RGST_ID = #{rgstId}
+	    </if>
+    </trim>
+  </select>
+  
+  <select id="getBoardList" resultType="hashmap" parameterType="hashmap">
+    SELECT * 
+    FROM TB_BOARD
+    <trim prefix="WHERE" prefixOverrides="AND|OR">
+	    <if test="no != null and no != ''">
+	    	AND NO = #{no}
+	    </if>
+	    <if test="title != null and title != ''">
+	    	AND TITLE = #{title}
+	    </if>
+	    <if test="contents != null and contents != ''">
+	    	AND CONTENTS = #{contents}
+	    </if>
+	    <if test="rgstId != null and rgstId != ''">
+	    	AND RGST_ID = #{rgstId}
+	    </if>
+    </trim>
+  </select>
+</mapper>

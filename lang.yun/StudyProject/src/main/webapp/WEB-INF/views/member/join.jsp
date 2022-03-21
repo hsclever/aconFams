@@ -11,6 +11,8 @@
 $(function(){
 	//이메일 도메인 세팅
 	Common.getCodeGrp($('#email2'), 'E_DOMAIN', [{CODE:"", CODE_NAME:"직접입력"}]);
+	//전화번호 국번 세팅
+	Common.getCodeGrp($('#phone1'), 'PHONE', null);
 	
 	//아이디 입력값 변경시
 	$('#userId').on('change', function(){
@@ -117,7 +119,9 @@ function validEmail(){
 				<li>이메일: <input type="text" id="email1" placeholder="이메일을 입력해주세요" />
 					<select id="email2">
 					</select>
-				
+				</li>
+				<li>핸드폰:
+					<select id="phone1"></select><input type="number" id="phone2" placeholder="휴대폰앞자리"/><input type="number" id="phone3" placeholder="휴대폰뒷자리"/>
 				</li>
 			</ul>
 		</div>

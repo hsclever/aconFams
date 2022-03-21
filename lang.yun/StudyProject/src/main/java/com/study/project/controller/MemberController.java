@@ -23,7 +23,7 @@ public class MemberController {
 	 */
 	@RequestMapping("/joinPage")
 	public String joinPage() {
-		return "join";
+		return "member/join";
 	}
 	
 	/**

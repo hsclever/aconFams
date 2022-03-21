@@ -28,6 +28,7 @@ function doLogin(){
 			, function(rs){
 				if(rs){
 					alert('로그인에 성공했습니다.');
+					location.href = "/getBoardList";
 					//게시물 페이지 이동 로직 필요
 				}else{
 					alert('로그인에 실패했습니다. 로그인 정보를 다시 확인해 주세요.');
