@@ -64,7 +64,6 @@ public class BoardController {
 	 */
 	@RequestMapping("/goBoardDetail")
 	public ModelAndView goBoardDetail(ModelAndView mv, @RequestParam String no) throws Exception {
-		//no 값이 있을 경우 처리 (수정case)
 		HashMap<String, Object> rsMap = new HashMap<String, Object>();
 		mv.addObject(rsMap);
 		mv.setViewName("board/boardForm");
@@ -80,13 +79,12 @@ public class BoardController {
 	 */
 	@ResponseBody
 	@RequestMapping("/doWrite")
-	public int doWrite(ModelAndView mv, @RequestParam HashMap<String, Object> map, HttpServletRequest request, HttpServletResponse response) throws Exception {
+	public int doWrite(ModelAndView mv, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		System.out.println(session.getAttribute("loginId"));
 		if(session.getAttribute("loginId") == null) { //세션이 없다면 로그인페이지로... 추후 인터셉터 적용 필요
 			return -99;
 		}
-		//no 값이 있을 경우 처리 (수정case)
 		int rs = boardService.doBoardWrite(map, request);
 		return rs;
 	}
@@ -100,8 +98,7 @@ public class BoardController {
 	 */
 	@ResponseBody
 	@RequestMapping("/doModify")
-	public int doModify(ModelAndView mv, @RequestParam String no) throws Exception {
-		//no 값이 있을 경우 처리 (수정case)
+	public int doModify(ModelAndView mv,@RequestParam HashMap<String, Object> map) throws Exception {
 		int rs = 0;
 		return rs;
 	}

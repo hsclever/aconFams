@@ -11,6 +11,8 @@ public class PagingUtils {
 	private static int pageBlock = 10;	//페이지 블럭
 	private static int totalCount = 0;	//전체 게시물수
 	private static int totalPage = 0;	//마지막 페이지
+	private static int limit1 = 0;
+	private static int limit2 = listCnt;
 	
 	public static HashMap<String, Object> setPaging(HashMap<String, Object> map) {
 		nowPage =  Integer.parseInt(StringUtils.NVL( map.get("nowPage"), "1"));
@@ -24,7 +26,8 @@ public class PagingUtils {
 		map.put("totalPage", totalPage);
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);
-		
+		map.put("limit1", (startPage-1) * listCnt);
+		map.put("limit2", limit2);
 		System.out.println(map.toString());
 		return map;
 	}

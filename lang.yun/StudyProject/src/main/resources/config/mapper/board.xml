@@ -42,6 +42,7 @@
 	    	AND RGST_ID = #{rgstId}
 	    </if>
     </trim>
+    limit #{limit1}, #{limit2}
   </select>
   
   <insert id="doBoardWrite" parameterType="hashmap">
