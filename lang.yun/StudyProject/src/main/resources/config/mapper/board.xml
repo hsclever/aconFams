@@ -35,9 +35,20 @@
 	    <if test="contents != null and contents != ''">
 	    	AND CONTENTS = #{contents}
 	    </if>
+	    <if test="pw != null and pw != ''">
+	    	AND PW = #{pw}
+	    </if>
 	    <if test="rgstId != null and rgstId != ''">
 	    	AND RGST_ID = #{rgstId}
 	    </if>
     </trim>
   </select>
+  
+  <insert id="doBoardWrite" parameterType="hashmap">
+  	INSERT INTO
+  	TB_BOARD
+  		(TITLE, CONTENTS, RGST_ID, PW, RGST_DT, UPDT_DT)
+  	VALUES
+  		(#{title}, #{contents}, #{rgstId}, #{pw}, now(), now())
+  </insert>
 </mapper>

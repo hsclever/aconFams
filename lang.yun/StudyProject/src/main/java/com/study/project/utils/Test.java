@@ -1,12 +1,12 @@
 package com.study.project.utils;
 
-import java.util.HashMap;
+import java.util.ArrayList;
 
 public class Test {
 	
 	
 	public static void main(String[] args) {
-		
+		/*
 		int nowPage = 1;	//현재 페이지
 		int startPage = 1;	//현재 블럭의 시작 페이지
 		int endPage = 1;	//현재 블럭의 시작 페이지
@@ -29,6 +29,12 @@ public class Test {
 		System.out.println("startPage:" + startPage);
 		System.out.println("endPage:" + endPage);
 		System.out.println("totalPage:" + totalPage);
+		*/
+		ArrayList<Integer> huddleList = new ArrayList<Integer>();
+		huddleList.add(0);
+		int MAX_SL_SAM_TOT = 0;
+		float per_graph = ((float)MAX_SL_SAM_TOT / huddleList.get(huddleList.size()-1)) * 100;
+		System.out.println(per_graph);
 	}
 
 }

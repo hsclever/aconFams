@@ -3,6 +3,9 @@ package com.study.project.controller;
 import java.util.HashMap;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpSession;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -79,9 +82,16 @@ public class MemberController {
 	 */
 	@ResponseBody
 	@RequestMapping("/doLogin")
-	public boolean doLogin(@RequestParam HashMap<String, Object> map) throws Exception {
+	public boolean doLogin(HttpServletRequest request, @RequestParam HashMap<String, Object> map) throws Exception {
 		map.put("userPw", EncSha256.encrypt(map.get("userPw").toString()));
 		List<HashMap> userList = memberService.getUserList(map);
+		
+		if(userList.size() == 1) {
+			HttpSession session = request.getSession();
+			session.setAttribute("loginId", (String)map.get("userId"));
+			session.setAttribute("isLogin", true);
+		}
+		
 		return userList.size() == 1 ? true : false;
 	}
 }

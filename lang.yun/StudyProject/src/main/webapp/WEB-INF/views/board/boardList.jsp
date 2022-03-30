@@ -10,7 +10,13 @@
 	List<HashMap<String, Object>> boardList = (List<HashMap<String, Object>>)request.getAttribute("boardList");
 %>
 <script type="text/javascript">
+function goWritePage(){
+	location.href="/goBoardForm";
+}
 
+function goDetailPage(no){
+	location.href="/goDetailPage?no="+no;
+}
 </script>
 </head>
 <body>
@@ -28,13 +34,16 @@
 				%>
 					<tr>
 						<td><%=StringUtils.NVL(map.get("NO"), "") %></td>
-						<td><%=StringUtils.NVL(map.get("TITLE"), "") %></td>
+						<td><a href="javascript:goDetailPage('<%=map.get("NO")%>'); "><%=StringUtils.NVL(map.get("TITLE"), "") %></a></td>
 						<td><%=StringUtils.NVL(map.get("RGST_ID"), "") %></td>
 						<td><%=StringUtils.NVL(map.get("RGST_DT"), "") %></td>
 					</tr>
 				<%} %>
 			</tbody>
 		</table>
+	</div>
+	<div>
+		<button type="button" onclick="javascript:goWritePage();">작성하기</button>
 	</div>
 </form>
 </body>
