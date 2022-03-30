@@ -11,6 +11,9 @@ import org.springframework.stereotype.Repository;
 @Repository
 public interface BoardMapper {
 	//게시물 목록
+	int getBoardTotalCount(HashMap<String, Object> map) throws Exception;
+	
+	//게시물 목록
 	List<HashMap> getBoardList(HashMap<String, Object> map) throws Exception;
 	
 	//글 등록

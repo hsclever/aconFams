@@ -24,6 +24,7 @@ public class BoardController {
 
 	@RequestMapping("/getBoardList")
 	public ModelAndView getBoardList( ModelAndView mv, @RequestParam HashMap<String, Object> map) throws Exception {
+		map.put("totalCount", boardService.getBoardTotalCount(map));
 		map = PagingUtils.setPaging(map);
 		mv.addObject("pagingMap", map);
 		List<HashMap> boardList = boardService.getBoardList(map);

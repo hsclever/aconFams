@@ -25,6 +25,7 @@ public class PagingUtils {
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);
 		
+		System.out.println(map.toString());
 		return map;
 	}
 }

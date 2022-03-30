@@ -19,6 +19,10 @@ public class BoardService {
 	@Autowired
 	private BoardMapper boardMapper;
 	
+	public int getBoardTotalCount(HashMap<String, Object> map) throws Exception{
+		return boardMapper.getBoardTotalCount(map);
+	}
+	
 	public List<HashMap> getBoardList(HashMap<String, Object> map) throws Exception{
 		return boardMapper.getBoardList(map);
 	}
