@@ -48,7 +48,7 @@ public class BoardController {
 			map.put("no", no);
 			List<HashMap> boardList = boardService.getBoardList(map);
 			if(boardList.size() == 1) {
-				mv.addObject(boardList.get(0));
+				mv.addObject("boardMap", boardList.get(0));
 			}
 		}
 		mv.setViewName("board/boardForm");
@@ -62,11 +62,15 @@ public class BoardController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/goBoardDetail")
-	public ModelAndView goBoardDetail(ModelAndView mv, @RequestParam String no) throws Exception {
-		HashMap<String, Object> rsMap = new HashMap<String, Object>();
-		mv.addObject(rsMap);
-		mv.setViewName("board/boardForm");
+	@RequestMapping("/goDetailPage")
+	public ModelAndView goDetailPage(ModelAndView mv, @RequestParam String no) throws Exception {
+		HashMap<String, Object> map = new HashMap<String, Object>();
+		map.put("no", no);
+		List<HashMap> boardList = boardService.getBoardList(map);
+		if(boardList.size() == 1) {
+			mv.addObject("boardMap", boardList.get(0));
+		}
+		mv.setViewName("board/boardDetail");
 		return mv;
 	}
 	
