@@ -26,7 +26,7 @@ public class PagingUtils {
 		map.put("totalPage", totalPage);
 		map.put("startPage", startPage);
 		map.put("endPage", endPage);
-		map.put("limit1", (startPage-1) * listCnt);
+		map.put("limit1", (nowPage-1) * listCnt);
 		map.put("limit2", limit2);
 		System.out.println(map.toString());
 		return map;
