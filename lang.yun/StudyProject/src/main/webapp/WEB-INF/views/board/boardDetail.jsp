@@ -8,6 +8,16 @@
 <%@ include file="/WEB-INF/views/include/common.jsp" %>
 <%HashMap<String, Object> boardMap = (HashMap<String, Object>)request.getAttribute("boardMap"); %>
 <script type="text/javascript">
+$(function(){
+	$('#btn_reply').on('click', function(){
+		<%if(boardMap.get("RGST_ID").toString().equals(session.getAttribute("loginId"))){%>
+			alert('자신이 등록한 글에는 답변을 달 수 없습니다.'); return;
+		<%}else{%>
+		
+		<%}%>
+	});
+});
+
 // 게시물 등록
 function goWritePage(){
 	location.href="/goBoardForm";
@@ -25,6 +35,11 @@ function goModifyPage(no){
 //목록으로
 function goList(){
 	location.href= '/getBoardList';
+}
+
+//댓글 등록
+function doRegReply(){
+	
 }
 </script>
 </head>
@@ -50,6 +65,11 @@ function goList(){
 		<button type="button" onclick="javascript:goList();">목록으로</button>
 		<button type="button" onclick="javascript:goModifyPage('<%=boardMap.get("NO") %>');">수정</button>
 		<button type="button" onclick="javascript:goWritePage();"">새글 등록</button>
+	</div>
+	
+	<div>
+		<textarea id="reply_comment"></textarea>
+		<button type="button" id="btn_reply">댓글 등록</button>
 	</div>
 </form>
 </body>
