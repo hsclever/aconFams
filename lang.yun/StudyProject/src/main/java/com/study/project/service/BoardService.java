@@ -24,7 +24,6 @@ public class BoardService {
 	}
 	
 	public List<HashMap> getBoardList(HashMap<String, Object> map) throws Exception{
-		System.out.println(map.toString());
 		return boardMapper.getBoardList(map);
 	}
 	

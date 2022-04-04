@@ -54,6 +54,24 @@ Common.getCodeGrp = function(obj, groupId, opt){ //opt : DB에서 가져온 코�
 				$(obj).append(html);
 			});
 		}
-	});
+	});	
+}
+
+//빈값 체크
+Common.isNull = function(obj, type){
+	if(type == 'i'){ //value 값을 가지는 input, select, textarea...등등
+		if($(obj).val() == '' || $(obj).val() == null){
+			return true;
+		}else{
+			return false;
+		}
+	}
 	
+	if(type == 'c'){ //체크박스.. 추후 필요시 작성
+		
+	}
+	
+	if(type == 'r'){ //라디오박스.. 추후 필요시 작성
+		
+	}
 }

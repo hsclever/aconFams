@@ -20,7 +20,7 @@ public class PagingUtils {
 		totalPage = totalCount % listCnt == 0 ? totalCount / listCnt  : totalCount / listCnt + 1; 
 		startPage = nowPage % pageBlock == 0 ? ((nowPage / pageBlock) - 1) * pageBlock  + 1 : (nowPage / pageBlock) * pageBlock  + 1; 
 		endPage = startPage + (pageBlock-1) > totalPage ? totalPage : startPage + (pageBlock-1); 
-		
+		map.put("pageBlock", pageBlock);
 		map.put("nowPage", nowPage);
 		map.put("totalCount", totalCount);
 		map.put("totalPage", totalPage);

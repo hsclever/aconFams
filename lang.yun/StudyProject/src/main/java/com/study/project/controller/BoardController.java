@@ -4,7 +4,6 @@ import java.util.HashMap;
 import java.util.List;
 
 import javax.servlet.http.HttpServletRequest;
-import javax.servlet.http.HttpServletResponse;
 import javax.servlet.http.HttpSession;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -15,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import org.springframework.web.servlet.ModelAndView;
 
 import com.study.project.service.BoardService;
+import com.study.project.utils.EncSha256;
 import com.study.project.utils.PagingUtils;
 
 @Controller
@@ -103,7 +103,15 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("/doModify")
 	public int doModify(ModelAndView mv,@RequestParam HashMap<String, Object> map) throws Exception {
-		int rs = 0;
-		return rs;
+		HashMap<String, Object>	validMap = new HashMap<String, Object>();
+		validMap.put("no", map.get("no"));
+		validMap.put("pw", EncSha256.encrypt(map.get("pw").toString()));
+		List<HashMap> boardList = boardService.getBoardList(validMap);
+		if(boardList.size() == 0) {
+			return -99;
+		}else {
+			map.remove("pw");	//mybatis 타지 않도록 수정
+			return boardService.doBoardModify(map);
+		}
 	}
 }

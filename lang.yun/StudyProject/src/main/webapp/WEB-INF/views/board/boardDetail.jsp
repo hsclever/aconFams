@@ -9,13 +9,17 @@
 <%HashMap<String, Object> boardMap = (HashMap<String, Object>)request.getAttribute("boardMap"); %>
 <script type="text/javascript">
 // 게시물 등록
-function doWrite(){
-	$('#frm').attr('action', '/doWrite').submit();
+function goWritePage(){
+	location.href="/goBoardForm";
 }
 
 // 게시물 수정
 function goModifyPage(no){
-	location.href = '/goBoardForm?no='+no;
+	<%if(boardMap.get("RGST_ID").toString().equals(session.getAttribute("loginId"))){%>
+		location.href = '/goBoardForm?no='+no;
+	<%}else{%>
+		alert('작성자만 수정 가능합니다.');
+	<%}%>
 }
 
 //목록으로
@@ -45,7 +49,7 @@ function goList(){
 	<div>
 		<button type="button" onclick="javascript:goList();">목록으로</button>
 		<button type="button" onclick="javascript:goModifyPage('<%=boardMap.get("NO") %>');">수정</button>
-		<button type="button" onclick="javascript:goDetailPage();">새글 등록</button>
+		<button type="button" onclick="javascript:goWritePage();"">새글 등록</button>
 	</div>
 </form>
 </body>

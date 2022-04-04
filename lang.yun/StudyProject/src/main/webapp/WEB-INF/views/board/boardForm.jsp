@@ -7,19 +7,33 @@
 <title>main</title>
 <%@ include file="/WEB-INF/views/include/common.jsp" %>
 <%
+	
+
 	HashMap<String, Object> boardMap = (HashMap<String, Object>)request.getAttribute("boardMap"); 
+	String no = "";
 	String title = "";
 	String rgstId = "";
 	String contents = "";
 	if(boardMap != null){
+		no = boardMap.get("NO").toString();
 		title = boardMap.get("TITLE").toString();
-		rgstId = boardMap.get("rgstId").toString();
-		contents = boardMap.get("contents").toString();
+		rgstId = boardMap.get("RGST_ID").toString();
+		contents = boardMap.get("CONTENTS").toString();
 	}
 %>
 <script type="text/javascript">
 // 게시물 등록
 function doWrite(){
+	if(Common.isNull($('#bTitle'), 'i')){
+		alert('제목을 입력하세요.'); return;
+	}
+	if(Common.isNull($('#bContents'), 'i')){
+		alert('내용을 입력하세요.'); return;
+	}
+	if(Common.isNull($('#bPw'), 'i')){
+		alert('비밀번호를 입력하세요.'); return;
+	}
+	
 	var params = {
 			title : $('#bTitle').val()
 			, contents : $('#bContents').val()
@@ -45,6 +59,16 @@ function doWrite(){
 
 // 게시물 수정
 function doModify(no){
+	if(Common.isNull($('#bTitle'), 'i')){
+		alert('제목을 입력하세요.'); return;
+	}
+	if(Common.isNull($('#bContents'), 'i')){
+		alert('내용을 입력하세요.'); return;
+	}
+	if(Common.isNull($('#bPw'), 'i')){
+		alert('비밀번호를 입력하세요.'); return;
+	}
+	
 	var params = {
 			no : no
 			, title : $('#bTitle').val()
@@ -54,6 +78,9 @@ function doModify(no){
 	Common.ajax('/doModify'
 			, params
 			, function(rs){
+				if(rs == -99){
+					alert('비밀번호가 일치하지 않습니다.'); return;
+				}
 				if(rs > 0){
 					alert('정상적으로 수정되었습니다.');
 					location.href = '/getBoardList';
@@ -75,10 +102,14 @@ function goList(){
 	<div>
 		<table>
 			<tr>
-				<th>제목</th>
-				<td><input type="text" id="bTitle" name="bTitle" value="<%=title %>"/></td>
 				<th>작성자</th>
-				<td><input type="password" id="bPw" name="bPw" value="<%=rgstId %>"/></td>
+				<td><input type="text" id="rgstId" name="rgstId" value="<%="".equals(no) ? session.getAttribute("loginId") : rgstId %>" readonly/></td>
+				<th>비밀번호</th>
+				<td><input type="password" id="bPw" name="bPw" value=""/></td>
+			</tr>
+			<tr>
+				<th>제목</th>
+				<td colspan="3"><input type="text" id="bTitle" name="bTitle" value="<%=title %>"/></td>
 			</tr>
 			<tr>
 				<th>내용</th>

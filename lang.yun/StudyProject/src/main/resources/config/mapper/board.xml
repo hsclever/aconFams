@@ -23,11 +23,15 @@
   </select>
   
   <select id="getBoardList" resultType="hashmap" parameterType="hashmap">
-    SELECT * 
+    SELECT *
+    		,DATE_FORMAT(RGST_DT, '%Y-%m-%d %H:%i:%s') FM_RGST_DT 
     FROM TB_BOARD
     <trim prefix="WHERE" prefixOverrides="AND|OR">
 	    <if test="no != null and no != ''">
 	    	AND NO = #{no}
+	    </if>
+	    <if test="pw != null and pw != ''">
+	    	AND PW = #{pw}
 	    </if>
 	    <if test="title != null and title != ''">
 	    	AND TITLE = #{title}
@@ -42,6 +46,7 @@
 	    	AND RGST_ID = #{rgstId}
 	    </if>
     </trim>
+    ORDER BY RGST_DT DESC
     <if test="limit1 != null and limit2 != null">
    		limit #{limit1}, #{limit2}
     </if>
@@ -53,5 +58,11 @@
   		(TITLE, CONTENTS, RGST_ID, PW, RGST_DT, UPDT_DT)
   	VALUES
   		(#{title}, #{contents}, #{rgstId}, #{pw}, now(), now())
-  </insert>
+  </insert> 
+  
+  <update id="doBoardModify" parameterType="hashmap">
+  	UPDATE TB_BOARD
+  	SET TITLE = #{title}, CONTENTS = #{contents}, UPDT_DT = now()  
+  	WHERE NO = #{no}
+  </update>
 </mapper>
