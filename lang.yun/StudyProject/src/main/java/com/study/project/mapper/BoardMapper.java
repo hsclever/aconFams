@@ -21,4 +21,7 @@ public interface BoardMapper {
 	
 	//글 수정
 	int doBoardModify(HashMap<String, Object> map) throws Exception;
+	
+	//글 수정
+	int doBoardDelete(HashMap<String, Object> map) throws Exception;
 }

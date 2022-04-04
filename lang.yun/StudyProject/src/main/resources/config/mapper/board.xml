@@ -65,4 +65,10 @@
   	SET TITLE = #{title}, CONTENTS = #{contents}, UPDT_DT = now()  
   	WHERE NO = #{no}
   </update>
+  
+  <delete id="doBoardDelete" parameterType="hashmap">
+  	DELETE
+  	FROM TB_BOARD
+  	WHERE NO = #{no} and PW = #{pw}
+  </delete>
 </mapper>

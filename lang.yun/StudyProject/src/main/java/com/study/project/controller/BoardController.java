@@ -114,4 +114,18 @@ public class BoardController {
 			return boardService.doBoardModify(map);
 		}
 	}
+	
+	/**
+	 * 글 삭제
+	 * @param mv
+	 * @param no
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping("/doDelete")
+	public int doDelete(ModelAndView mv,@RequestParam HashMap<String, Object> map) throws Exception {
+		map.put("pw", EncSha256.encrypt(map.get("pw").toString()));
+		return boardService.doBoardDelete(map);
+	}
 }

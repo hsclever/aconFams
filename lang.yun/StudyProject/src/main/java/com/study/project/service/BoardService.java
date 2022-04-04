@@ -40,4 +40,9 @@ public class BoardService {
 	public int doBoardModify(HashMap<String, Object> map) throws Exception{
 		return boardMapper.doBoardModify(map);
 	}
+	
+	//글 삭제
+	public int doBoardDelete(HashMap<String, Object> map) throws Exception{
+		return boardMapper.doBoardDelete(map);
+	}
 }

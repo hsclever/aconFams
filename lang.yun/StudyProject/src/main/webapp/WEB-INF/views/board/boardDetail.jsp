@@ -32,6 +32,22 @@ function goModifyPage(no){
 	<%}%>
 }
 
+//게시물 삭제 확인
+function doDelete(no){
+	var html =`
+		<div style="position:absolute; left:50%; top:50%;">비밀번호를 입력해주세요.<input type="password" id="pw"/>
+			<button type="button" onclick="javascript:confirmDelete('\${no}');">확인</button></div>
+			<button type="button" onclick="javascript:$(this).closest('div').remove();">취소</button></div>
+	`;
+	$('#frm').append(html);
+	//삭제 로직 필요
+}
+
+//게시물 삭제
+function confirmDelete(no){
+	//비밀번호 검증 후 삭제	
+}
+
 //목록으로
 function goList(){
 	location.href= '/getBoardList';
@@ -64,6 +80,7 @@ function doRegReply(){
 	<div>
 		<button type="button" onclick="javascript:goList();">목록으로</button>
 		<button type="button" onclick="javascript:goModifyPage('<%=boardMap.get("NO") %>');">수정</button>
+		<button type="button" onclick="javascript:doDelete('<%=boardMap.get("NO") %>');">삭제</button>
 		<button type="button" onclick="javascript:goWritePage();"">새글 등록</button>
 	</div>
 	
