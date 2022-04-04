@@ -35,8 +35,10 @@ function goModifyPage(no){
 //게시물 삭제 확인
 function doDelete(no){
 	var html =`
-		<div style="position:absolute; left:50%; top:50%;">비밀번호를 입력해주세요.<input type="password" id="pw"/>
-			<button type="button" onclick="javascript:confirmDelete('\${no}');">확인</button></div>
+		<div style="position:absolute; left:50%; top:50%;">
+			이놈은 레이어임!!! <br/>
+			비밀번호를 입력해주세요.<input type="password" id="pw"/>
+			<button type="button" onclick="javascript:confirmDelete('\${no}');">확인</button>
 			<button type="button" onclick="javascript:$(this).closest('div').remove();">취소</button></div>
 	`;
 	$('#frm').append(html);
