@@ -20,13 +20,15 @@ $(function(){
 
 // 게시물 등록
 function goWritePage(){
-	location.href="/goBoardForm";
+	location.href="/board/goBoardForm";
 }
 
 // 게시물 수정
 function goModifyPage(no){
+	alert('<%=boardMap.get("RGST_ID").toString()%>');
+	alert('<%=session.getAttribute("loginId")%>');
 	<%if(boardMap.get("RGST_ID").toString().equals(session.getAttribute("loginId"))){%>
-		location.href = '/goBoardForm?no='+no;
+		location.href = '/board/goBoardForm?no='+no;
 	<%}else{%>
 		alert('작성자만 수정 가능합니다.');
 	<%}%>
@@ -52,7 +54,7 @@ function confirmDelete(no){
 
 //목록으로
 function goList(){
-	location.href= '/getBoardList';
+	location.href= '/board/getBoardList';
 }
 
 //댓글 등록

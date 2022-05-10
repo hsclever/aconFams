@@ -39,7 +39,7 @@ function doWrite(){
 			, contents : $('#bContents').val()
 			, pw :  $('#bPw').val()
 	}
-	Common.ajax('/doWrite'
+	Common.ajax('/board/doWrite'
 			, params
 			, function(rs){
 				if(rs == -99){
@@ -75,7 +75,7 @@ function doModify(no){
 			, contents : $('#bContents').val()
 			, pw :  $('#bPw').val()
 	}
-	Common.ajax('/doModify'
+	Common.ajax('/board/doModify'
 			, params
 			, function(rs){
 				if(rs == -99){
@@ -93,7 +93,7 @@ function doModify(no){
 }
 
 function goList(){
-	location.href = '/getBoardList';
+	location.href = '/board/getBoardList';
 }
 </script>
 </head>

@@ -23,12 +23,12 @@ function doLogin(){
 			userId : $('#userId').val()
 			, userPw : $('#userPw').val()
 	}
-	Common.ajax('doLogin'
+	Common.ajax('/member/doLogin'
 			, params
 			, function(rs){
 				if(rs){
 					alert('로그인에 성공했습니다.');
-					location.href = "/getBoardList";
+					location.href = "/board/getBoardList";
 					//게시물 페이지 이동 로직 필요
 				}else{
 					alert('로그인에 실패했습니다. 로그인 정보를 다시 확인해 주세요.');
@@ -46,7 +46,7 @@ function doLogin(){
 			<p>비밀번호: <input type="password" id="userPw" /></p>
 			<button type="button" onclick="javascript:doLogin();">로그인</button>
 		</div>
-		<a href="javascript:goSubmit('/joinPage');">아직 회원이 아니세요? 회원가입 화면으로 이동합니다.</a>
+		<a href="javascript:goSubmit('/member/joinPage');">아직 회원이 아니세요? 회원가입 화면으로 이동합니다.</a>
 	</div>
 </form>
 </body>

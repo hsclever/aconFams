@@ -24,7 +24,7 @@ public class MemberController {
 	 * 회원가입 페이지
 	 * @return
 	 */
-	@RequestMapping("/joinPage")
+	@RequestMapping("/member/joinPage")
 	public String joinPage() {
 		return "member/join";
 	}
@@ -36,7 +36,7 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping("/idCheck")
+	@RequestMapping("/member/idCheck")
 	public boolean idCheck(@RequestParam HashMap<String, Object> map) throws Exception {
 		List<HashMap> userList = memberService.getUserList(map);
 		return userList.size() > 0 ? true : false;
@@ -49,7 +49,7 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping("/doJoin")
+	@RequestMapping("/member/doJoin")
 	public HashMap<String, Object> chkPwValid(@RequestParam HashMap<String, Object> map) throws Exception {
 		String userPw = (String)map.get("userPw");
 		String userPw_confirm = (String)map.get("userPw_confirm");
@@ -81,7 +81,7 @@ public class MemberController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping("/doLogin")
+	@RequestMapping("/member/doLogin")
 	public boolean doLogin(HttpServletRequest request, @RequestParam HashMap<String, Object> map) throws Exception {
 		map.put("userPw", EncSha256.encrypt(map.get("userPw").toString()));
 		List<HashMap> userList = memberService.getUserList(map);

@@ -22,7 +22,7 @@ public class BoardController {
 	@Autowired
 	private BoardService boardService;
 
-	@RequestMapping("/getBoardList")
+	@RequestMapping("/board/getBoardList")
 	public ModelAndView getBoardList( ModelAndView mv, @RequestParam HashMap<String, Object> map) throws Exception {
 		map.put("totalCount", boardService.getBoardTotalCount(map));
 		map = PagingUtils.setPaging(map);
@@ -40,7 +40,7 @@ public class BoardController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/goBoardForm")
+	@RequestMapping("/board/goBoardForm")
 	public ModelAndView goBoardForm(ModelAndView mv, @RequestParam(defaultValue = "") String no) throws Exception {
 		//no 값이 있을 경우 처리 (수정case)
 		if(!"".equals(no)) { //값이 있다면 수정페이지로 판단
@@ -62,7 +62,7 @@ public class BoardController {
 	 * @return
 	 * @throws Exception
 	 */
-	@RequestMapping("/goDetailPage")
+	@RequestMapping("/board/goDetailPage")
 	public ModelAndView goDetailPage(ModelAndView mv, @RequestParam String no) throws Exception {
 		HashMap<String, Object> map = new HashMap<String, Object>();
 		map.put("no", no);
@@ -82,7 +82,7 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping("/doWrite")
+	@RequestMapping("/board/doWrite")
 	public int doWrite(ModelAndView mv, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception {
 		HttpSession session = request.getSession();
 		System.out.println(session.getAttribute("loginId"));
@@ -101,7 +101,7 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping("/doModify")
+	@RequestMapping("/board/doModify")
 	public int doModify(ModelAndView mv,@RequestParam HashMap<String, Object> map) throws Exception {
 		HashMap<String, Object>	validMap = new HashMap<String, Object>();
 		validMap.put("no", map.get("no"));
@@ -123,7 +123,7 @@ public class BoardController {
 	 * @throws Exception
 	 */
 	@ResponseBody
-	@RequestMapping("/doDelete")
+	@RequestMapping("/board/doDelete")
 	public int doDelete(ModelAndView mv,@RequestParam HashMap<String, Object> map) throws Exception {
 		map.put("pw", EncSha256.encrypt(map.get("pw").toString()));
 		return boardService.doBoardDelete(map);

@@ -18,18 +18,18 @@
 <script type="text/javascript">
 //작성 입력폼으로 이동
 function goWritePage(){
-	location.href="/goBoardForm";
+	location.href="/board/goBoardForm";
 }
 
 //글 상세페이지로 이동
 function goDetailPage(no){
-	location.href="/goDetailPage?no="+no;
+	location.href="/board/goDetailPage?no="+no;
 }
 
 //리스트로 이동
 function getBoardList(nowPage){
 	$('#nowPage').val(nowPage);
-	$('#frm').attr('action', '/getBoardList').submit();
+	$('#frm').attr('action', '/board/getBoardList').submit();
 }
 </script>
 </head>

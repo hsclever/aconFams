@@ -52,7 +52,7 @@ $(function(){
 				,email  : email
 		}
 		//∞°¿‘
-		Common.ajax('/doJoin'
+		Common.ajax('/member/doJoin'
 				, params
 				, function(data){
 					if(data.RESULT == 'SUCCESS'){
@@ -74,7 +74,7 @@ function idCheck(){
 		var params = {
 				userId : $('#userId').val()
 		}
-		Common.ajax('/idCheck'
+		Common.ajax('/member/idCheck'
 				,params,
 				function(data){
 					if(data){
