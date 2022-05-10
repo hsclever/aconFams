@@ -84,11 +84,6 @@ public class BoardController {
 	@ResponseBody
 	@RequestMapping("/board/doWrite")
 	public int doWrite(ModelAndView mv, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception {
-		HttpSession session = request.getSession();
-		System.out.println(session.getAttribute("loginId"));
-		if(session.getAttribute("loginId") == null) { //세션이 없다면 로그인페이지로... 추후 인터셉터 적용 필요
-			return -99;
-		}
 		int rs = boardService.doBoardWrite(map, request);
 		return rs;
 	}
@@ -127,5 +122,19 @@ public class BoardController {
 	public int doDelete(ModelAndView mv,@RequestParam HashMap<String, Object> map) throws Exception {
 		map.put("pw", EncSha256.encrypt(map.get("pw").toString()));
 		return boardService.doBoardDelete(map);
+	}
+	
+	/**
+	 * 댓글 등록
+	 * @param mv
+	 * @param no
+	 * @return
+	 * @throws Exception
+	 */
+	@ResponseBody
+	@RequestMapping("/board/doWriteReply")
+	public int doWriteReply(ModelAndView mv, @RequestParam HashMap<String, Object> map, HttpServletRequest request) throws Exception {
+		int rs = boardService.doBoardWrite(map, request);
+		return rs;
 	}
 }

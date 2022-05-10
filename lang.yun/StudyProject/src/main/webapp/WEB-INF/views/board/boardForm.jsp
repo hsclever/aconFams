@@ -42,13 +42,9 @@ function doWrite(){
 	Common.ajax('/board/doWrite'
 			, params
 			, function(rs){
-				if(rs == -99){
-					alert('로그인이 필요합니다.');
-					location.href = '/main';
-				}
 				if(rs > 0){
 					alert('정상적으로 등록되었습니다.');
-					location.href = '/getBoardList';
+					location.href = '/board/getBoardList';
 				}
 			}
 			, function(e){
@@ -83,7 +79,7 @@ function doModify(no){
 				}
 				if(rs > 0){
 					alert('정상적으로 수정되었습니다.');
-					location.href = '/getBoardList';
+					location.href = '/board/getBoardList';
 				}
 			}
 			, function(e){
